@@ -15,5 +15,15 @@ namespace DotnetBakery.Controllers
         public BakersController(ApplicationContext context) {
             _context = context;
         }
-    }
+
+        // The `[HttpGet]` attribute defines this method as our `GET /api/bakers` endpoint
+        // This function returns a `IEnumerable<Baker>` object,
+        // which is .NET's fancy way of saying "A list of baker objects"
+        [HttpGet]
+        public IEnumerable<Baker> GetAll() 
+        {
+        // Look ma, no SQL queries!
+        return _context.Bakers;
+        }
+        }
 }
