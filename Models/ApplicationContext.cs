@@ -7,5 +7,6 @@ namespace DotnetBakery.Models
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {}
 
         public DbSet<Baker> Bakers { get; set; }
+        public DbSet<Bread> Breads {get; set;}
     }
 }

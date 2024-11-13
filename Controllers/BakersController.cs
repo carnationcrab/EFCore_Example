@@ -25,5 +25,28 @@ namespace DotnetBakery.Controllers
         // Look ma, no SQL queries!
         return _context.Bakers;
         }
+
+        // GET /api/bakers/:id
+        [HttpGet("{id}")]
+        public ActionResult<Baker> GetById(int id) {
+            Baker baker =  _context.Bakers
+                .SingleOrDefault(baker => baker.id == id);
+            
+            // Return a `404 Not Found` if the baker doesn't exist
+            if(baker is null) {
+                return NotFound();
+            }
+
+            return baker;
         }
+
+        [HttpPost]
+        public Baker Post(Baker baker) 
+        {
+            _context.Add(baker);
+            _context.SaveChanges();
+
+            return baker;
+        }
+    }
 }
